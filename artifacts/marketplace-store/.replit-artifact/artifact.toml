@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Marketplace Store"
+description = "A production-shaped marketplace storefront with product discovery, seller tools, persistent cart and order flows, and authentication-aware experiences."
+version = "1.0.0"
+id = "artifacts/marketplace-store"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23438
+
+[services.development]
+run = "pnpm --filter @workspace/marketplace-store run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/marketplace-store", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/marketplace-store/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23438"
+BASE_PATH = "/"
