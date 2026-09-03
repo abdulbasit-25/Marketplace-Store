@@ -1,0 +1,1 @@
+- [Cookie-auth smoke tests](auth-smoke-testing.md) — verify session cookies through a real login-to-protected-request round trip, not only token issuance.
